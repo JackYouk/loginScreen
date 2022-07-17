@@ -1,6 +1,17 @@
 const router = require('express').Router();
 const Login = require('../../../model/Login');
 
+router.get('/', async (req, res) => {
+    try {
+        const logins = await Login.findAll();
+        console.log(logins);
+        res.json(logins);
+    } catch (error) {
+        res.status(500).json({error});
+    }
+})
+
+
 router.post('/', async (req, res) => {
     const {username, password} = req.body;
     try {

@@ -1,25 +1,18 @@
-let usernameInput = $('#username');
-let passwordInput = $('#password');
-let submitBtn = $('#submitBtn');
+const usernameInput = document.querySelector('#username');
+const passwordInput = document.querySelector('#password');
+const submitBtn = document.querySelector('#submitBtn');
 
-submitBtn.on('click', () => {
+submitBtn.addEventListener('click', function(){
     const data = {
-        username: usernameInput,
-        password: passwordInput
+        username: usernameInput.value,
+        password: passwordInput.value
     };
 
     fetch('/api/login', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-    })
-    .then(response => response.json())
-    .then(data => {
-    console.log('Success:', data);
-    })
-    .catch((error) => {
-    console.error('Error:', error);
-    });
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
 })
